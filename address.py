@@ -1,3 +1,4 @@
+from textwrap import wrap
 from tkinter import *
 from tkinter.scrolledtext import ScrolledText
 import mysql.connector
@@ -70,12 +71,14 @@ def display(t,u):
 
     displayer = ScrolledText(top)
     displayer.insert(END,t)
-    displayer.grid(row=1,column=1,columnspan=2)
+    displayer.grid(row=1,column=1,columnspan=2,padx=20)
     displayer.config(state= DISABLED)
 
     head2=Label(top,text="Date").grid(row=0,column=4,padx=10,pady=10)
     date = Label(top,text=u)
-    date.grid(row=1,column=4,padx=10,pady=10,ipady=50)
+    date.grid(row=1,column=4,padx=10,pady=10)
+
+   
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -86,11 +89,12 @@ def view():
     c.execute(''' 
     SELECT * FROM Story;''')
     records = c.fetchall()
+    sno=''
     print_records='' 
     date_records='' 
     for record in records:
-        print_records += str(record[1]) +'\n\n\n\n'
-        date_records += str(record[2]) +'\n\n\n\n'
+        print_records += str(record[0]) +".  "+ str(record[1]) +'\n\n\n\n'
+        date_records += str(record[0]) +".  "+str(record[2]) +'\n\n\n\n'
     display(print_records,date_records)
         
 
