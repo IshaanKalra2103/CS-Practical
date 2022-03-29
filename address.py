@@ -38,7 +38,7 @@ def create_table():
         StoryContent LONGTEXT,
         StoryDate datetime DEFAULT CURRENT_TIMESTAMP);
     )
-    ''')
+    ''',multi=True)
     
     db.close()
     print("Database Created")
@@ -48,7 +48,7 @@ def delete_table():
  
     c.execute('''
     DROP TABLE Story;
-    ''')
+    ''',multi=True)
     
     db.close()
     print("Database Created")
